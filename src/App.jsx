@@ -677,7 +677,7 @@ export default function App() {
             {/* SERVICES SECTION END */}
 
             {/* DIV CREATE If No SERVICES FOUND */}
-            {filteredProducts.length === 0 && activeCategory !== "All" && (
+            {filteredProducts.length === 0 && category !== "All" && (
               <div className="text-center py-12">
                 <div className="text-gray-400 text-xl mb-4">
                   No services found in this category
