@@ -30,6 +30,7 @@ import gymHead from "./assets/gym-head.jpg";
 import localTrianer from "./assets/local-trianer.jpg";
 import personalTrainer from "./assets/personal.jpg";
 import femaleTrainer from "./assets/female-personal-trainer.jpg";
+import Swal from "sweetalert2";
 
 export default function App() {
   // AOS ANIMATION
@@ -241,6 +242,151 @@ export default function App() {
       trainer.specialization.toLowerCase().includes(search.toLowerCase()),
   );
 
+  // State form confirm booking
+  const [bookedService, setBookedService] = useState([]);
+
+  // Price string change itno number
+  const getPriceNumber = (price) => {
+    return Number(price.replace(/[^0-9]/g, ""));
+  };
+
+  // Booking Confirmation with SweetAllert2
+  const bookNowBtn = (service) => {
+    setBookedService((prev) => [...prev, service]);
+
+    Swal.fire({
+      title: "Booking Confirmed!",
+      text: `${service.name} successfully booked.`,
+      icon: "success",
+      confirmButtonColor: "#f59e0b",
+      background: "#020617",
+      color: "#fff",
+    });
+  };
+
+  // Popup open for seeing collection or confirm booking
+  const bookingPopup = () => {
+    if (bookedService.length === 0) {
+      Swal.fire({
+        title: "No Booking Yet",
+        text: "Add your services",
+        icon: "info",
+        confirmButtonColor: "#f59e0b",
+        background: "#020617",
+        color: "#fff",
+      });
+      return;
+    }
+
+    const totalBill = bookedService.reduce(
+      (sum, service) => sum + getPriceNumber(service.price),
+      0,
+    );
+
+    Swal.fire({
+      title: "Your Booked Services",
+      html: `
+      ${bookedService
+        .map(
+          (service, index) => `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div>
+              <strong>${service.name}</strong><br/>
+              <span style="color:#f59e0b">${service.price}</span>
+            </div>
+            <button 
+              onclick="window.removeBookedService(${index})"
+              style="background:#f59e0b; border:none; padding:4px 10px; border-radius:6px; cursor:pointer;">
+              Remove
+            </button>
+          </div>
+        `,
+        )
+        .join("")}
+
+      <hr style="margin:15px 0; border-color:#333;" />
+
+      <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:bold;">
+        <span>Total Bill</span>
+        <span style="color:#f59e0b">$${totalBill}</span>
+      </div>
+    `,
+      showConfirmButton: true,
+      confirmButtonText: "Show Details",
+      confirmButtonColor: "#f59e0b",
+      background: "#020617",
+      color: "#fff",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        showBillDetails(totalBill);
+      }
+    });
+  };
+
+  // Bill Making
+  const showBillDetails = (totalBill) => {
+    Swal.fire({
+      title: "Billing Details",
+      html: `
+      ${bookedService
+        .map(
+          (service) => `
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span>${service.name}</span>
+            <span style="color:#f59e0b">${service.price}</span>
+          </div>
+        `,
+        )
+        .join("")}
+
+      <hr style="margin:15px 0; border-color:#333;" />
+
+      <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:bold;">
+        <span>Total Payable</span>
+        <span style="color:#f59e0b">$${totalBill}</span>
+      </div>
+    `,
+      confirmButtonText: "OK",
+      confirmButtonColor: "#f59e0b",
+      background: "#020617",
+      color: "#fff",
+    });
+  };
+
+  // Remove booked service
+  window.removeBookedService = (index) => {
+    Swal.fire({
+      title: "Remove Service?",
+      text: "Are you sure you want to remove this service?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Remove",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#f59e0b",
+      cancelButtonColor: "#374151",
+      background: "#020617",
+      color: "#fff",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setBookedService((prev) => prev.filter((_, i) => i !== index));
+
+        Swal.fire({
+          title: "Removed!",
+          text: "Service has been removed successfully.",
+          icon: "success",
+          confirmButtonColor: "#f59e0b",
+          background: "#020617",
+          color: "#fff",
+        });
+
+        // Refresh popup after delete
+        setTimeout(() => {
+          bookingPopup();
+        }, 200);
+      }
+    });
+  };
+
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -317,6 +463,17 @@ export default function App() {
                 >
                   Memebership
                 </a>
+                <a
+                  onClick={bookingPopup}
+                  className="relative cursor-pointer text-white bg-linear-to-r rounded-xl p-2 from-amber-600 to-amber-800 hover:text-black transition-colors font-medium"
+                >
+                  Booked Services
+                  {bookedService.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-black text-amber-500 text-xs px-2 py-0.5 rounded-full">
+                      {bookedService.length}
+                    </span>
+                  )}
+                </a>
 
                 <input
                   type="text"
@@ -391,6 +548,17 @@ export default function App() {
                       className="text-white hover:text-amber-500 transition-colors font-medium"
                     >
                       Memebership
+                    </a>
+                    <a
+                      onClick={bookingPopup}
+                      className="relative cursor-pointer text-white bg-linear-to-r rounded-xl p-2 from-amber-600 to-amber-800 hover:text-black transition-colors font-medium"
+                    >
+                      Booked Services
+                      {bookedService.length > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-black text-amber-500 text-xs px-2 py-0.5 rounded-full">
+                          {bookedService.length}
+                        </span>
+                      )}
                     </a>
                   </div>
                 </div>
@@ -666,7 +834,10 @@ export default function App() {
                       <span className="text-2xl font-bold text-amber-600">
                         {service.price}
                       </span>
-                      <button className="bg-linear-to-r from-amber-500 to-amber-800 text-white px-6 py-2 rounded-lg font-semibold hover:from-amber-600 hover:to-amber-800 transition-all">
+                      <button
+                        onClick={() => bookNowBtn(service)}
+                        className="bg-linear-to-r from-amber-500 to-amber-800 text-white px-6 py-2 rounded-lg font-semibold hover:from-amber-600 hover:to-amber-800 transition-all"
+                      >
                         Book Now
                       </button>
                     </div>
