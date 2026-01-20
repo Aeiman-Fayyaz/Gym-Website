@@ -261,7 +261,7 @@ export default function App() {
       <div className="min-h-screen bg-gray-950">
         {/* NAVBAR START */}
         <nav
-          className="fixed w-full z-50 bg-linear-to-b from-black/95 to-black/80 backdrop-blur-xl p-8"
+          className="fixed w-full z-50 bg-linear-to-b from-black/95 to-black/80 backdrop-blur-xl lg:p-8"
           data-aos="fade-down"
           data-aos-duration="500"
         >
