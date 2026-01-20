@@ -270,12 +270,12 @@ export default function App() {
               <div className="flex items-center space-x-3">
                 <img
                   src={logo}
-                  className="h-14 w-14 rounded-full ring-2 ring-gold-500"
+                  className="h-14 w-14 rounded-full ring-2 ring-amber-500"
                   alt="Titan Strength Logo"
                 />
                 <div>
-                  <h1 className="text-2xl font-bold bg-linear-to-r from-gold-400 to-gold-600 bg-clip-text text-white">
-                    TITAN STRENGTH
+                  <h1 className="text-2xl font-bold bg-linear-to-r from-amber-600 to-amber-800 bg-clip-text text-white">
+                    <a href="#home">TITAN STRENGTH</a>
                   </h1>
                   <p className="text-xs text-gray-400">
                     Elite Fitness & Performance
@@ -320,7 +320,7 @@ export default function App() {
 
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-2 bg-gray-900/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent text-white placeholder-gray-400"
+                  className="w-full pl-10 pr-4 py-2 bg-gray-900/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent text-white placeholder-gray-400"
                   placeholder="Search services, trainers..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
@@ -439,7 +439,7 @@ export default function App() {
               >
                 <a
                   href="#membership"
-                  className="bg-linear-to-r from-amber-500 to-amber-800 text-black px-8 py-4 rounded-xl text-lg font-bold hover:from-gold-600 hover:to-gold-700 transition-all transform hover:scale-105"
+                  className="bg-linear-to-r from-amber-500 to-amber-800 text-black px-8 py-4 rounded-xl text-lg font-bold hover:from-amber-600 hover:to-amber-800 transition-all transform hover:scale-105"
                 >
                   START YOUR JOURNEY
                 </a>
@@ -479,9 +479,9 @@ export default function App() {
 
                   <div className="space-y-4">
                     <div className="flex items-start">
-                      <div className="bg-gold-500/10 p-2 rounded-lg mr-4">
+                      <div className="bg-amber-500/10 p-2 rounded-lg mr-4">
                         <svg
-                          className="h-6 w-6 text-gold-400"
+                          className="h-6 w-6 text-amber-600"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -504,9 +504,9 @@ export default function App() {
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <div className="bg-gold-500/10 p-2 rounded-lg mr-4">
+                      <div className="bg-amber-500/10 p-2 rounded-lg mr-4">
                         <svg
-                          className="h-6 w-6 text-gold-400"
+                          className="h-6 w-6 text-amber-600"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -530,9 +530,9 @@ export default function App() {
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <div className="bg-gold-500/10 p-2 rounded-lg mr-4">
+                      <div className="bg-amber-500/10 p-2 rounded-lg mr-4">
                         <svg
-                          className="h-6 w-6 text-gold-400"
+                          className="h-6 w-6 text-amber-600"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -568,7 +568,7 @@ export default function App() {
                   className="rounded-2xl shadow-2xl"
                 />
                 <div
-                  className="absolute -bottom-6 -right-6 bg-linear-to-r from-gold-500 to-gold-600 text-black p-6 rounded-2xl shadow-xl"
+                  className="absolute -bottom-6 -right-6 bg-linear-to-r from-amber-600 to-amber-800 text-black p-6 rounded-2xl shadow-xl"
                   data-aos="zoom-in"
                   data-aos-delay="400"
                 >
@@ -652,7 +652,7 @@ export default function App() {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-black/80 text-gold-400 px-3 py-1 rounded-full text-sm font-medium">
+                      <span className="bg-black/80 text-amber-600 px-3 py-1 rounded-full text-sm font-medium">
                         {service.category}
                       </span>
                     </div>
@@ -663,10 +663,10 @@ export default function App() {
                     </h3>
                     <p className="text-gray-400 mb-4">{service.description}</p>
                     <div className="flex justify-between items-center">
-                      <span className="text-2xl font-bold text-gold-400">
+                      <span className="text-2xl font-bold text-amber-600">
                         {service.price}
                       </span>
-                      <button className="bg-linear-to-r from-amber-500 to-amber-800 text-white px-6 py-2 rounded-lg font-semibold hover:from-gold-600 hover:to-gold-700 transition-all">
+                      <button className="bg-linear-to-r from-amber-500 to-amber-800 text-white px-6 py-2 rounded-lg font-semibold hover:from-amber-600 hover:to-amber-800 transition-all">
                         Book Now
                       </button>
                     </div>
@@ -684,7 +684,7 @@ export default function App() {
                 </div>
                 <button
                   onClick={() => setCategory("All")}
-                  className="text-gold-400 hover:text-gold-300 underline"
+                  className="text-amber-600 hover:text-amber-800 underline"
                 >
                   View all services
                 </button>
@@ -727,7 +727,7 @@ export default function App() {
                     <h3 className="text-xl font-bold text-white mb-1">
                       {trainer.name}
                     </h3>
-                    <p className="text-gold-400 font-medium mb-2">
+                    <p className="text-amber-600 font-medium mb-2">
                       {trainer.role}
                     </p>
                     <div className="flex items-center text-gray-400 text-sm mb-3">
@@ -749,7 +749,7 @@ export default function App() {
                     <p className="text-gray-300 text-sm mb-4">
                       {trainer.specialization}
                     </p>
-                    <button className="w-full bg-linear-to-r from-amber-500 to-amber-800 text-black py-2 rounded-lg font-semibold hover:from-gold-600 hover:to-gold-700 transition-all">
+                    <button className="w-full bg-linear-to-r from-amber-500 to-amber-800 text-black py-2 rounded-lg font-semibold hover:from-amber-600 hover:to-amber-800 transition-all">
                       Book Session
                     </button>
                   </div>
@@ -812,7 +812,7 @@ export default function App() {
                     "Nutrition Plan",
                     "Sauna Access",
                   ],
-                  color: "from-gold-500 to-gold-600",
+                  color: "from-amber-600 to-amber-800",
                   popular: true,
                 },
                 {
@@ -837,7 +837,7 @@ export default function App() {
                   data-aos-delay={index * 200}
                 >
                   {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-linear-to-r from-gold-500 to-gold-600 text-black px-6 py-1 rounded-full text-sm font-bold">
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-linear-to-r from-amber-500 to-amber-600 text-black px-6 py-1 rounded-full text-sm font-bold">
                       MOST POPULAR
                     </div>
                   )}
@@ -854,7 +854,7 @@ export default function App() {
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center text-gray-300">
                         <svg
-                          className="h-5 w-5 text-gold-400 mr-3"
+                          className="h-5 w-5 text-amber-600 mr-3"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -874,7 +874,7 @@ export default function App() {
                     className={`w-full py-3 rounded-lg font-bold transition-all ${
                       plan.popular
                         ? "bg-white text-black hover:bg-gray-100 cursor-pointer "
-                        : "bg-linear-to-r from-amber-500 to-amber-800 text-black hover:from-gold-600 hover:to-gold-700 cursor-pointer"
+                        : "bg-linear-to-r from-amber-500 to-amber-800 text-black hover:from-amber-600 hover:to-amber-800 cursor-pointer"
                     }`}
                   >
                     GET STARTED
