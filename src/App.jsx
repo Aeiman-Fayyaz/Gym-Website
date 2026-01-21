@@ -4,6 +4,7 @@ import "./App.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import logo from "./assets/logo.jpg";
+import cart from "./assets/cart.png";
 import about from "./assets/about.png";
 // Core Training Services
 import strengthWeightTraining from "./assets/strength-weight-training.jpg";
@@ -420,7 +421,7 @@ export default function App() {
                   alt="Titan Strength Logo"
                 />
                 <div>
-                  <h1 className="text-2xl font-bold bg-linear-to-r from-amber-600 to-amber-800 bg-clip-text text-white">
+                  <h1 className="lg:text-2xl sm:text-xl font-bold bg-linear-to-r from-amber-600 to-amber-800 bg-clip-text text-white">
                     <a href="#home">TITAN STRENGTH</a>
                   </h1>
                   <p className="text-xs text-gray-400">
@@ -429,7 +430,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* LARGE SCREEN */}
+              {/* LARGE SCREEN MENU */}
               <div className="hidden md:flex items-center space-x-8">
                 <div className="relative w-64"></div>
 
@@ -461,20 +462,21 @@ export default function App() {
                   href="#membership"
                   className="text-white hover:text-amber-500 transition-colors font-medium"
                 >
-                  Memebership
+                  Membership
                 </a>
                 <a
                   onClick={bookingPopup}
-                  className="relative cursor-pointer text-white bg-linear-to-r rounded-xl p-2 from-amber-600 to-amber-800 hover:text-black transition-colors font-medium"
+                  className="relative cursor-pointer rounded-xl p-2 hover:text-black transition-colors"
                 >
-                  Booked Services
+                  <img src={cart} alt="" className="cart" />
                   {bookedService.length > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-black text-amber-500 text-xs px-2 py-0.5 rounded-full">
+                    <span className="absolute -top-2 -right-2 bg-amber-400/30 text-amber-500 text-md px-2 py-0.5 rounded-full">
                       {bookedService.length}
                     </span>
                   )}
                 </a>
 
+                {/* Search */}
                 <input
                   type="text"
                   className="w-full pl-10 pr-4 py-2 bg-gray-900/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent text-white placeholder-gray-400"
@@ -484,30 +486,45 @@ export default function App() {
                 />
               </div>
 
-              {/* Mobile Menu Button */}
-              <button
-                className="md:hidden menu-button"
-                onClick={() => setOpen(!open)}
-              >
-                <svg
-                  className="h-8 w-8 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              {/* MOBILE MENU BUTTON + CART */}
+              <div className="md:hidden flex items-center space-x-3">
+                {/* Cart */}
+                <a
+                  onClick={bookingPopup}
+                  className="relative cursor-pointer rounded-xl p-2 hover:text-black transition-colors"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d={
-                      open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"
-                    }
-                  />
-                </svg>
-              </button>
+                  <img src={cart} alt="" className="h-8 w-8" />
+                  {bookedService.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-amber-400/30 text-amber-500 text-sm px-2 py-0.5 rounded-full">
+                      {bookedService.length}
+                    </span>
+                  )}
+                </a>
+
+                {/* Menu Button */}
+                <button className="menu-button" onClick={() => setOpen(!open)}>
+                  <svg
+                    className="h-8 w-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d={
+                        open
+                          ? "M6 18L18 6M6 6l12 12"
+                          : "M4 6h16M4 12h16M4 18h16"
+                      }
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
 
-            {/* Mobile Menu */}
+            {/* MOBILE MENU */}
             {open && (
               <div className="md:hidden mobile-menu absolute top-20 left-0 right-0 bg-gray-900/95 backdrop-blur-xl border-t border-gray-800">
                 <div className="px-4 py-4 space-y-4">
@@ -547,18 +564,7 @@ export default function App() {
                       href="#membership"
                       className="text-white hover:text-amber-500 transition-colors font-medium"
                     >
-                      Memebership
-                    </a>
-                    <a
-                      onClick={bookingPopup}
-                      className="relative cursor-pointer text-white bg-linear-to-r rounded-xl p-2 from-amber-600 to-amber-800 hover:text-black transition-colors font-medium"
-                    >
-                      Booked Services
-                      {bookedService.length > 0 && (
-                        <span className="absolute -top-2 -right-2 bg-black text-amber-500 text-xs px-2 py-0.5 rounded-full">
-                          {bookedService.length}
-                        </span>
-                      )}
+                      Membership
                     </a>
                   </div>
                 </div>
@@ -566,6 +572,7 @@ export default function App() {
             )}
           </div>
         </nav>
+
         {/* NAVBAR END */}
         {/* HERO SECTION START */}
         <section id="home" className="pt-20">
